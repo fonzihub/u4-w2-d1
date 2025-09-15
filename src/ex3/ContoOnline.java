@@ -13,8 +13,10 @@ public class ContoOnline {
                 + " - Massimo movimenti: " + maxMovimenti + " - Massimo prelievo possibile: " + maxPrelievo);
     }
 
-    public void preleva(double x) {
-        if (x <= maxPrelievo) {
+    public void preleva(double x) throws BancaException {
+        if (x > maxPrelievo) {
+            throw new BancaException("prelievo non disponibile");
+        }else{
             super.preleva(x);
         }
     }

@@ -13,10 +13,14 @@ package ex3;
             this.nMovimenti = 0;
         }
 
-        public void preleva(double x) {
-            if (nMovimenti < maxMovimenti) saldo = saldo - x;
-            else saldo = saldo - x - 0.50;
+        public void preleva(double x) throws BancaException{
+           double nuovoSaldo;
+            if (nMovimenti < maxMovimenti) nuovoSaldo = saldo - x;
+            else nuovoSaldo = saldo - x - 0.50;
             nMovimenti++;
+            if(nuovoSaldo >= 0){
+                this.saldo = nuovoSaldo;
+            }else throw  new BancaException("non hai abbastanza soldi");
         }
 
         public double restituisciSaldo() {
